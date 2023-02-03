@@ -1,6 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.querySelector(".carousel-item");
     const button = document.querySelector("button");
     button.addEventListener("click", (event) => {
       const query = document.querySelector("input").value;
@@ -10,14 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
       )
         .then((res) => res.json())
         .then((results) => {
-          const resultsArray = results.response.results;
+          const resultsArray = results.response.silce(0,3);
           resultsArray.forEach((element) => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.setAttribute("href", element.webUrl);
-            a.textContent = element.webUrl;
-            li.appendChild(a);
-            ul.appendChild(li);
+                 let [first, second, third] = [...querySelectorAll("p")];
+                 first.text.Content[0].webURL;
+                 second.text.Content[1].webURL;
+                 third.text.Content[2].webURL;
+
+            // const li = document.createElement("li");
+            // const a = document.createElement("a");
+            // a.setAttribute("href", element.webUrl);
+            // a.textContent = element.webUrl;
+            // li.appendChild(a);
+            // ul.appendChild(li);
           });
         });
     });

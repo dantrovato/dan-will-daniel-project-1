@@ -1,3 +1,47 @@
+
+h1{
+
+}
+
+h5{
+color: #fff;
+background: rgb(0,0,0);
+background: linear-gradient(74deg, rgba(0,0,0,1) 0%, rgba(125,125,143,1) 40%, rgba(221,232,235,1) 100%);
+}
+
+
+
+.jumbotron{
+    text-align: center;
+}
+
 body{
     background-color: rgb(199, 197, 197);
+}
+
+.form-inline{
+justify-content: center;
+ padding: 20px;
+ margin: 0px;
+}
+
+.form-control{
+ font-size: 1.5rem;
+ height: 65px;
+ margin: auto 15px;
+}
+
+.btn{
+ padding: 20px;
+ margin: auto 15px;
+}
+
+
+.card-title{
+    padding: 15px 10px;
+}
+
+.footer{
+    text-align: center;
+    padding-bottom: 20px;
 }
