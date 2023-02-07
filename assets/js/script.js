@@ -21,7 +21,6 @@ function vidSearch(searchTerm){
         const vidList = response.items;
         console.log(vidList);
         let allVideosEl = document.querySelector('#videos');
-        // allVideosEl.innerHTML = '';
 
         // builds and attaches the elements containing the videos
         for (let i = 0; i < vidList.length; i++) {
@@ -29,6 +28,7 @@ function vidSearch(searchTerm){
             const video = vidList[i].snippet;
             let videoEl = allVideosEl.children[i];
 
+            // the quick way
             videoEl.innerHTML = `<a href=https://youtu.be/${videoId}>
                 <h6 class='card-title'>${video.title}</h6>
                 <img src=${video.thumbnails.default.url} class='card-img-top'>
@@ -37,11 +37,10 @@ function vidSearch(searchTerm){
                     <p>by ${video.channelTitle}</p>
                 </div>`
             
+            // saved the old way for reference
+            // videoEl.innerHTML = '';
             // let anchorEl = document.createElement('a');
             // anchorEl.setAttribute('href', `https://youtu.be/${videoId}`);
-
-            // const video = vidList[i].snippet;
-            // console.log(video);
 
             // let titleEl = document.createElement('h6');
             // titleEl.setAttribute('class', 'card-title');
@@ -65,7 +64,7 @@ function vidSearch(searchTerm){
 
             // anchorEl.appendChild(divEl);
             
-            // videoEl.appendChild(divEl);
+            // videoEl.appendChild(anchorEl);
 
             
 
