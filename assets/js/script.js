@@ -4,8 +4,25 @@ function getArticlesAtRandom(array, num) {
   return randomisedArr.slice(0, num);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function displayArticles(description, title, url) {
   const articlesContainer = document.querySelector("#articles-container"); // the div element that will contain articles
+  const articleDiv = document.createElement("div"); // create container for each article
+  articleDiv.setAttribute("id", "article-div"); // give it an id for css styling
+
+  const descriptionP = document.createElement("p"); // create p element and give it the description string as text
+  descriptionP.innerHTML = `<a href="${url}">${description}</a>`;
+
+  const titleEl = document.createElement("h5"); // create h5 element and give it the title string as text
+  titleEl.innerHTML = `<a href="${url}">${title}</a>`;
+
+  const a = document.createElement("a");
+
+  articleDiv.appendChild(titleEl); // build the individual div with tile and description
+  articleDiv.appendChild(descriptionP);
+  articlesContainer.appendChild(articleDiv);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector("button"); // the search button
 
   button.addEventListener("click", (event) => {
@@ -25,16 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // create div for each article and put them in the article section
         articlesObjects.forEach((articleObj) => {
           let { content, description, image, title, url } = articleObj; // object destructuring - takes these properties out of the articleObj and stores them in the specified variables
-          const articleDiv = document.createElement("div");
-          articleDiv.setAttribute("id", "article-div");
-          const descriptionP = document.createElement("p");
-          descriptionP.textContent = description;
-          const titleP = document.createElement("p");
-          titleP.textContent = title;
-
-          articleDiv.appendChild(titleP);
-          articleDiv.appendChild(descriptionP);
-          articlesContainer.appendChild(articleDiv);
+          displayArticles(description, title, url);
         });
       });
   });

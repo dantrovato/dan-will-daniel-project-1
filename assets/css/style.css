@@ -1,7 +1,7 @@
 h1 {
 }
 
-h5 {
+h5.card-title {
   color: #fff;
   background: rgb(0, 0, 0);
   background: linear-gradient(
