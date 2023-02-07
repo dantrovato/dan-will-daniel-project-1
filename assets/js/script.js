@@ -4,6 +4,7 @@ function getArticlesAtRandom(array, num) {
   return randomisedArr.slice(0, num);
 }
 
+// Makes a p and h5 for description and title, puts a link to the article and prints it to the articles div
 function displayArticles(description, title, url) {
   const articlesContainer = document.querySelector("#articles-container"); // the div element that will contain articles
   const articleDiv = document.createElement("div"); // create container for each article
@@ -22,6 +23,12 @@ function displayArticles(description, title, url) {
   articlesContainer.appendChild(articleDiv);
 }
 
+// Removes any previous articles in case the user clicks search more than once
+function clearArticles() {
+  const articlesContainer = document.querySelector("#articles-container");
+  articlesContainer.innerHTML = "";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector("button"); // the search button
 
@@ -38,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // debugger;
         const resultsArray = res.articles; // store the results into an array of ojbects
         const articlesObjects = getArticlesAtRandom(resultsArray, 3); // get 5 articles at random
+        clearArticles(); // removes any previous articles in case the user clicks search more than once
 
         // create div for each article and put them in the article section
         articlesObjects.forEach((articleObj) => {
