@@ -98,66 +98,11 @@ function getbooks(){
           card.appendChild(bookImg); 
           // append card element to books-container div element
           cards.appendChild(card);    
-
-          
-        }
-
-      //   for (let i=0; i<3; i++) {  // create 3 div cards 
-      //     let card = document.createElement('div');  // create a div element
-      //     card.setAttribute("id", "book-div");
-
-      //     card.innerHTML= "<h4>" + data.docs[i].title + "</h4> <p> Author: " + data.docs[i].author_name + "</p>";  // update card content with data from API response
-
-      //     let bookImg = document.createElement("img");   // create an image element 
-      //     bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg`;   // update card image source with imgUrl from API response 
-
-      //     card.appendChild(bookImg);   // append image element to card element 
-
-      //     cards.appendChild(card);   // append card element to books-container div element 
-
-          
-      //   }                      
+        }                  
      });              
   });  														   
 }    getbooks(); 
-// function getbooks(){
-//   const form = document.querySelector("button");
-//   // Listen for submit event on the form element
-//   form.addEventListener("click", (event) => {
-//     event.preventDefault();
-
-//     // Get the search term from the input field
-//     const searchTerm = document.querySelector("input").value;
-   
-//       // Make an API call to OpenLibrary API with the search term as parameter
-//        fetch(`https://openlibrary.org/search.json?q=${searchTerm}`)
-//         .then(res => res.json())
-//         .then((data) => {
-
-//           console.log(data);
-    
-//         // Get all cards elements in books section and loop through them to update their content with data from API response  
-//         const cards = document.querySelector('#books-container');
-//         cards.forEach((card, index) => {       
-          
-//           card.innerHTML= "<h4>" + data.docs[index].title + "</h4> <p> Author: " + data.docs[index].author_name + "</p>";  
-
-//           // Update card image source with imgUrl from API response 
-//           let bookImg = document.createElement("img");
-          
-//           bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[index].isbn[0]}-L.jpg`;
-
-//           card.appendChild(bookImg);            
-//           // card.innerHTML+= "<img src= `https://covers.openlibrary.org/b/isbn/" + data.docs[index].isbn[0] + "-M.jpg`>";  // corrected syntax error here
-//           // Update card body content with description from API response  
-            
-//         });        
-//       });    
-//   });  														  
-// }
-  
-// getbooks();
-  
+ 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector("button"); // the search button
  
