@@ -78,22 +78,46 @@ function getbooks(){
         // Get all cards elements in books section and loop through them to update their content with data from API response
         const cards = document.querySelector('#books-container'); 
 
-        for (let i=0; i<3; i++) {  // create 3 div cards 
-          let card = document.createElement('div');  // create a div element
+         // create 3 div cards 
+        for (let i=0; i<3; i++) { 
+          // create a div element
+          let card = document.createElement('div');  
           card.setAttribute("id", "book-div");
-
-          card.innerHTML= "<h4>" + data.docs[i].title + "</h4> <p> Author: " + data.docs[i].author_name + "</p>";  // update card content with data from API response
-
-          let bookImg = document.createElement("img");   // create an image element 
-          bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg`;   // update card image source with imgUrl from API response 
-
-          card.appendChild(bookImg);   // append image element to card element 
-
-          cards.appendChild(card);   // append card element to books-container div element 
+          // create an anchor element 
+          let bookLink = document.createElement("a");   
+          // update link source with book adress from API response 
+          bookLink.href = `https://openlibrary.org/isbn/${data.docs[i].isbn[0]}`;   
+          bookLink.innerHTML = "<h4>" + data.docs[i].title + "</h4> <p> Author: " + data.docs[i].author_name + "</p>";
+          // append link element to card element
+          card.appendChild(bookLink);   
+          // create an image element 
+          let bookImg = document.createElement("img");   
+          // update card image source with imgUrl from API response 
+          bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg`; 
+          // append image element to card element 
+          card.appendChild(bookImg); 
+          // append card element to books-container div element
+          cards.appendChild(card);    
 
           
-        }                      
-      });              
+        }
+
+      //   for (let i=0; i<3; i++) {  // create 3 div cards 
+      //     let card = document.createElement('div');  // create a div element
+      //     card.setAttribute("id", "book-div");
+
+      //     card.innerHTML= "<h4>" + data.docs[i].title + "</h4> <p> Author: " + data.docs[i].author_name + "</p>";  // update card content with data from API response
+
+      //     let bookImg = document.createElement("img");   // create an image element 
+      //     bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg`;   // update card image source with imgUrl from API response 
+
+      //     card.appendChild(bookImg);   // append image element to card element 
+
+      //     cards.appendChild(card);   // append card element to books-container div element 
+
+          
+      //   }                      
+     });              
   });  														   
 }    getbooks(); 
 // function getbooks(){

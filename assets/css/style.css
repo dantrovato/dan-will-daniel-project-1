@@ -68,7 +68,6 @@ body{
 
 /* the div that wraps each article  */
 #article-div {
-  width: 300px auto;
   border: 1px solid black;
   border-radius: 5px;
   margin: 2rem 1rem;
@@ -93,11 +92,17 @@ body{
 
 /* the div that wraps each books   */
 #book-div {
-  width: 300px auto;
   border: 1px solid black;
   border-radius: 5px;
   margin: 2rem auto;
 }
+
+/* remove the blue text from the books*/
+#book-div a {
+  color: black;
+  text-decoration: none;
+}
+
 
 #book-div p,
 #book-div h4{
@@ -114,31 +119,40 @@ body{
   padding-bottom: 20px;
 }
 
+@media  (max-width: 1430px){
+
+  .navContainer{
+    margin: 30px;
+  }
+
+  #articles-container, 
+  #books-container{
+    display: block;
+  }
+
+}
+
 @media  (max-width: 934px){
 
     .navContainer{
-      margin: 30px;
-    }
-
-    .jumbotron h1{
-      font-size: 2rem;
-    }
-
-    .form-control{
-      width: 400px;
-      text-align: center;
+    margin: 30px;
+  }
+  .jumbotron h1{
+    font-size: 2rem;
+  }
+  .form-control{
+    width: 400px;
+    text-align: center;
   }
 
-    .btn{
-      width: 400px;
-      padding: auto;
-      margin: 10px 15px;
-}
+  .btn{
+    width: 400px;
+    padding: auto;
+    margin: 10px 15px;
+  }
     
-    #books-container,
-    #articles-container{
-      display: block;
-
-}
+  #books-container{
+    display: block;
+ }
     
 }
