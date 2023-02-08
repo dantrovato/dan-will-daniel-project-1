@@ -1,4 +1,3 @@
-
 function getArticles(query) {
   // Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
   function getArticlesAtRandom(array, num) {
@@ -11,7 +10,6 @@ function getArticles(query) {
     const articlesContainer = document.querySelector("#articles-container"); // the div element that will contain articles
     const articleDiv = document.createElement("div"); // create container for each article
     articleDiv.setAttribute("id", "article-div"); // give it an id for css styling
-
 
     const descriptionP = document.createElement("p"); // create p element and give it the description string as text
     descriptionP.innerHTML = `<a href="${url}">${description}</a>`;
@@ -53,7 +51,7 @@ function getArticles(query) {
 function getbooks(query) {
   // Removes any previous search result in case the useclicks search more than once
   function removePreviousSearch() {
-    const cards = document.querySelector('#books-container');
+    const cards = document.querySelector("#books-container");
 
     while (cards.firstChild) {
       cards.removeChild(cards.firstChild);
@@ -61,37 +59,48 @@ function getbooks(query) {
   }
   // Make an API call to OpenLibrary API with the searcterm as parameter
   fetch(`https://openlibrary.org/search.json?q=${query}`)
-    .then(res => res.json())
+    .then((res) => res.json())
     .then((data) => {
       console.log(data);
 
-      removePreviousSearch()
+      removePreviousSearch();
       // Get all cards elements in books section and loothrough them to update their content with data froAPI response
-      const cards = document.querySelector('#books-container');
+      const cards = document.querySelector("#books-container");
 
-      // create 3 div cards 
+      // create 3 div cards
       for (let i = 0; i < 3; i++) {
         // create a div element
-        let card = document.createElement('div');
+        let card = document.createElement("div");
         card.setAttribute("id", "book-div");
-        // create an anchor element 
+        // create an anchor element
         let bookLink = document.createElement("a");
-        // update link source with book adress from APresponse 
+        // update link source with book adress from APresponse
         bookLink.href = `https://openlibrary.org/isbn/${data.docs[i].isbn[0]}`;
-        bookLink.innerHTML = "<h4>" + data.docs[i].title + "</h4> <p> Author: " + data.docs[i].author_name + "</p>";
+        bookLink.innerHTML =
+          "<h4>" +
+          data.docs[i].title +
+          "</h4> <p> Author: " +
+          data.docs[i].author_name +
+          "</p>";
         // append link element to card element
         card.appendChild(bookLink);
-        // create an image element 
+        // create an image element
         let bookImg = document.createElement("img");
-        // update card image source with imgUrl from APresponse 
+        // update card image source with imgUrl from APresponse
         bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg?default=false`;
-        // append image element to card element 
+        // append image element to card element
         card.appendChild(bookImg);
         // append card element to books-container dielement
         cards.appendChild(card);
       }
     });
-};
+}
+
+function storeQuery(query) {
+  localStorage.setItem(`${query}`, `${query}`);
+
+  console.log(Object.values(localStorage));
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector("button"); // the search button
@@ -99,15 +108,18 @@ document.addEventListener("DOMContentLoaded", () => {
   button.addEventListener("click", (event) => {
     event.preventDefault(); // stops the form from submitting
     const query = document.querySelector("input").value; // the value of the input when the user clicks the search button
+
     if (!query) {
       alert("Please enter your interest");
       return;
     }
-    const booksSection = document.querySelector('.bodyContainer');
-    booksSection.removeAttribute('hidden');
 
-    getArticles(query); // Main function to completely deal with 
-    getbooks(query);
+    storeQuery(query);
+
+    const booksSection = document.querySelector(".bodyContainer");
+    booksSection.removeAttribute("hidden");
+
+    getArticles(query); // Main function to completely deal with
+    // getbooks(query);
   });
-
 });
