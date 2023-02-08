@@ -103,9 +103,11 @@ function storeQuery(query) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const button = document.querySelector("button"); // the search button
+  const formButton = document.querySelector("#form-button"); // the search button
+  const searchHistoryButton = document.querySelector("#search-history-button");
+  const searchHistory = document.querySelector("#search-history");
 
-  button.addEventListener("click", (event) => {
+  formButton.addEventListener("click", (event) => {
     event.preventDefault(); // stops the form from submitting
     const query = document.querySelector("input").value; // the value of the input when the user clicks the search button
 
@@ -121,5 +123,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getArticles(query); // Main function to completely deal with
     // getbooks(query);
+  });
+
+  searchHistoryButton.addEventListener("click", (event) => {
+    searchHistory.innerHTML = ""; // removes previous links to the dropdown menu
+
+    const queries = Object.values(localStorage); // returns an array with the queries [cabbage, beer...]
+
+    // populate the searchHistory div with the queries from local storage
+    queries.forEach((query) => {
+      const a = document.createElement("a");
+      a.classList.add("dropdown-item");
+      a.setAttribute("href", "#");
+      a.textContent = query;
+      searchHistory.appendChild(a);
+    });
   });
 });
