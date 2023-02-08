@@ -16,8 +16,8 @@ function vidSearch(searchTerm){
         console.log(response);
         const vidList = response.items;
         console.log(vidList);
-        let allVideosEl = document.querySelector('#videos');
-        // builds and attaches the elements containing the videos
+        let allVideosEl = document.querySelector('#video-container');
+        // builds and attaches the elements containing the video title, thumbnail and description to the video section
         for (let i = 0; i < vidList.length; i++) {
             const videoId = vidList[i].id.videoId;
             videoIdArray.push(videoId);
