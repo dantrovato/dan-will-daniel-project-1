@@ -1,5 +1,6 @@
 let searchTerm = 'surfing';
 vidSearch(searchTerm);
+let videoIdArray = [];
 
 function vidSearch(searchTerm){
 
@@ -25,17 +26,20 @@ function vidSearch(searchTerm){
         // builds and attaches the elements containing the videos
         for (let i = 0; i < vidList.length; i++) {
             const videoId = vidList[i].id.videoId;
+            videoIdArray.push(videoId);
+
             const video = vidList[i].snippet;
             let videoEl = allVideosEl.children[i];
 
             // the quick way
-            videoEl.innerHTML = `<a href=https://youtu.be/${videoId}>
-                <h6 class='card-title'>${video.title}</h6>
+            videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed">
+                <h6 class='card-title' id='video-title'>${video.title}</h6>
                 <img src=${video.thumbnails.default.url} class='card-img-top'>
                 <div class=card-body>
                     <p>${video.description}</p>
                     <p>by ${video.channelTitle}</p>
-                </div>`
+                </div>
+                </button>`
             
             // saved the old way for reference
             // videoEl.innerHTML = '';
@@ -71,3 +75,40 @@ function vidSearch(searchTerm){
         }
     })
 }
+
+document.querySelector('#videos').addEventListener('click', function(event){
+    if (event.target.matches('button')){
+        console.log('event listener works')
+        let index = event.target.getAttribute('data-id');
+        let embedId = videoIdArray[index];
+
+        let tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        let firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            height: '315',
+            width: '500',
+            videoId: `${embedId}`,
+            playerVars: {
+              'playsinline': 1
+            },
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+          event.target.playVideo();
+        }
+
+        // document.querySelector('iframe').innerHTML = `<iframe width="500" height="315" src="https://www.youtube.com/embed/${embedId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+    }
+})
