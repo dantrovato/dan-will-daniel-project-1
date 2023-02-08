@@ -1,3 +1,4 @@
+
 function getArticles(query) {
   // Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
   function getArticlesAtRandom(array, num) {
@@ -10,6 +11,7 @@ function getArticles(query) {
     const articlesContainer = document.querySelector("#articles-container"); // the div element that will contain articles
     const articleDiv = document.createElement("div"); // create container for each article
     articleDiv.setAttribute("id", "article-div"); // give it an id for css styling
+
 
     const descriptionP = document.createElement("p"); // create p element and give it the description string as text
     descriptionP.innerHTML = `<a href="${url}">${description}</a>`;
@@ -31,7 +33,7 @@ function getArticles(query) {
   }
 
   fetch(
-    `https://gnews.io/api/v4/search?token=d06b56befd778f95afde57c26ebc9890&q=${query}`
+    `https://gnews.io/api/v4/search?q=${query}&apikey=a3da074793d989f84d2beb007c724681&`
   )
     .then((res) => res.json()) // get json response and make it into a js object
     .then((res) => {
@@ -48,45 +50,48 @@ function getArticles(query) {
     });
 }
 
-function getbooks() {
-  const form = document.querySelector(".form-inline");
-  // Listen for submit event on the form element
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    // Get the search term from the input field
-    const searchTerm = document.querySelector(".form-control").value;
-    if (!searchTerm) {
-      alert("Please enter your interest");
-      return;
-    }
-    // Make an API call to OpenLibrary API with the search term as parameter
-    fetch(`https://openlibrary.org/search.json?q=${searchTerm}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // Get the books section element and make it visible by removing hidden class from it
-        const booksSection = document.querySelector(".bodyContainer");
-        booksSection.removeAttribute("hidden");
-        // Get all cards elements in books section and loop through them to update their content with data from API response
-        const cards = document.querySelectorAll(".books");
-        cards.forEach((card, index) => {
-          card.innerHTML =
-            "<h4>" +
-            data.docs[index].title +
-            "</h4> <p> Author: " +
-            data.docs[index].author_name +
-            "</p>";
-          // Update card image source with imgUrl from API response
-          let bookImg = document.createElement("img");
+function getbooks(query) {
+  // Removes any previous search result in case the useclicks search more than once
+  function removePreviousSearch() {
+    const cards = document.querySelector('#books-container');
 
-          bookImg.src = `https://covers.openlibrary.org/b/lccn/${data.docs[index].lccn[0]}-L.jpg`;
-          card.appendChild(bookImg);
-          // card.innerHTML+= "<img src= `https://covers.openlibrary.org/b/isbn/" + data.docs[index].isbn[0] + "-M.jpg`>";  // corrected syntax error here
-          // Update card body content with description from API response
-        });
-      });
-  });
-}
+    while (cards.firstChild) {
+      cards.removeChild(cards.firstChild);
+    }
+  }
+  // Make an API call to OpenLibrary API with the searcterm as parameter
+  fetch(`https://openlibrary.org/search.json?q=${query}`)
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+
+      removePreviousSearch()
+      // Get all cards elements in books section and loothrough them to update their content with data froAPI response
+      const cards = document.querySelector('#books-container');
+
+      // create 3 div cards 
+      for (let i = 0; i < 3; i++) {
+        // create a div element
+        let card = document.createElement('div');
+        card.setAttribute("id", "book-div");
+        // create an anchor element 
+        let bookLink = document.createElement("a");
+        // update link source with book adress from APresponse 
+        bookLink.href = `https://openlibrary.org/isbn/${data.docs[i].isbn[0]}`;
+        bookLink.innerHTML = "<h4>" + data.docs[i].title + "</h4> <p> Author: " + data.docs[i].author_name + "</p>";
+        // append link element to card element
+        card.appendChild(bookLink);
+        // create an image element 
+        let bookImg = document.createElement("img");
+        // update card image source with imgUrl from APresponse 
+        bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg?default=false`;
+        // append image element to card element 
+        card.appendChild(bookImg);
+        // append card element to books-container dielement
+        cards.appendChild(card);
+      }
+    });
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector("button"); // the search button
@@ -94,7 +99,15 @@ document.addEventListener("DOMContentLoaded", () => {
   button.addEventListener("click", (event) => {
     event.preventDefault(); // stops the form from submitting
     const query = document.querySelector("input").value; // the value of the input when the user clicks the search button
+    if (!query) {
+      alert("Please enter your interest");
+      return;
+    }
+    const booksSection = document.querySelector('.bodyContainer');
+    booksSection.removeAttribute('hidden');
 
-    getArticles(query); // Main function to completely deal with getting and display articles
+    getArticles(query); // Main function to completely deal with 
+    getbooks(query);
   });
+
 });
