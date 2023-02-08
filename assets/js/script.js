@@ -103,9 +103,11 @@ function storeQuery(query) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const queries = Object.values(localStorage); // returns an array with the queries [cabbage, beer...]
   const formButton = document.querySelector("#form-button"); // the search button
   const searchHistoryButton = document.querySelector("#search-history-button");
   const searchHistory = document.querySelector("#search-history");
+  const reset = document.querySelector("#reset");
 
   formButton.addEventListener("click", (event) => {
     event.preventDefault(); // stops the form from submitting
@@ -128,8 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
   searchHistoryButton.addEventListener("click", (event) => {
     searchHistory.innerHTML = ""; // removes previous links to the dropdown menu
 
-    const queries = Object.values(localStorage); // returns an array with the queries [cabbage, beer...]
-
     // populate the searchHistory div with the queries from local storage
     queries.forEach((query) => {
       const a = document.createElement("a");
@@ -138,5 +138,13 @@ document.addEventListener("DOMContentLoaded", () => {
       a.textContent = query;
       searchHistory.appendChild(a);
     });
+  });
+
+  reset.addEventListener("click", (event) => {
+    queries.forEach((query) => {
+      localStorage.removeItem(query);
+      // searchHistory.innerHTML = ""; // removes previous links to the dropdown menu
+    });
+    document.location.reload();
   });
 });
