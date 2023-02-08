@@ -1,5 +1,4 @@
-let searchTerm = 'surfing';
-vidSearch(searchTerm);
+
 let videoIdArray = [];
 
 function vidSearch(searchTerm){
@@ -184,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getArticles(query); // Main function to completely deal with 
     getbooks(query);
+    vidSearch(query);
   });
 
 });
