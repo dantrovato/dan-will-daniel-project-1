@@ -2,9 +2,9 @@ function vidSearch(searchTerm){
   // number of videos to list, 0 - 50
   const maxResults = 3;
   // takes a string, returns only embeddable videos if set to 'true', returns any video if set to 'any'
-  const videoEmbeddable = 'any';
+  const videoEmbeddable = 'true';
   // takes a string, returns only videos that can be played outside of youtube if set to 'true', returns any video if set to 'any'
-  const videoSyndicated = 'any';
+  const videoSyndicated = 'true';
   // for holding the youtube video IDs
   let videoIdArray = [];
   // the youtube API query
