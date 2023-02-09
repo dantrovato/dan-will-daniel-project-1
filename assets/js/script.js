@@ -1,6 +1,3 @@
-
-let videoIdArray = [];
-
 function vidSearch(searchTerm){
     // number of videos to list, 0 - 50
     const maxResults = 3;
@@ -8,6 +5,8 @@ function vidSearch(searchTerm){
     const videoEmbeddable = 'any';
     // takes a string, returns only videos that can be played outside of youtube if set to 'true', returns any video if set to 'any'
     const videoSyndicated = 'any';
+    // for holding the youtube video IDs
+    let videoIdArray = [];
     // the youtube API query
     let queryURL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResults}&q=${searchTerm}&type=video&videoEmbeddable=${videoEmbeddable}&videoSyndicated=${videoSyndicated}&key=AIzaSyAaHlsRrNz-Id4A5QSxQDmMAAg7Atuz5V0`;
     fetch(queryURL)
@@ -17,62 +16,67 @@ function vidSearch(searchTerm){
         const vidList = response.items;
         console.log(vidList);
         let allVideosEl = document.querySelector('#video-container');
-        // builds and attaches the elements containing the video title, thumbnail and description to the video section
+        // this section builds and attaches the elements containing the video title, thumbnail and description to the video section
         for (let i = 0; i < vidList.length; i++) {
+            console.log(`loop ${i}`);
+
+            // the video id for links and embed
             const videoId = vidList[i].id.videoId;
             videoIdArray.push(videoId);
+            console.log(videoIdArray);
+            // the key that contains the video data we want
             const video = vidList[i].snippet;
+
+            // adds to the video section
             let videoEl = allVideosEl.children[i];
-            // the quick way
-            videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed">
+            videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed${i}">
                 <h6 class='card-title' id='video-title'>${video.title}</h6>
                 <img src=${video.thumbnails.default.url} class='card-img-top'>
                 <div class=card-body>
                     <p>${video.description}</p>
                     <p>by ${video.channelTitle}</p>
                 </div>
-                </button>`
+                </button>`;
+        };
 
-        }
-    })
-}
+        // this section embeds videos in modals
 
-document.querySelector('#videos').addEventListener('click', function(event){
-    if (event.target.matches('button')){
-        console.log('event listener works')
-        let index = event.target.getAttribute('data-id');
-        let embedId = videoIdArray[index];
-
-        let tag = document.createElement('script');
-
+        // loads the iframe API asynchronously
+        let tag = document.createElement('script')
         tag.src = "https://www.youtube.com/iframe_api";
         let firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        var player;
-        function onYouTubeIframeAPIReady() {
-          player = new YT.Player('player', {
-            height: '315',
-            width: '500',
-            videoId: `${embedId}`,
-            playerVars: {
-              'playsinline': 1
-            },
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
-            }
-          });
+        // creates the youtube players
+        window.onYouTubeIframeAPIReady = function() {
+            console.log("YouTube API Ready");
+            player = new YT.Player(`video0`, {
+                height: '315',
+                width: '500',
+                videoId: videoIdArray[0],
+                playerVars: {
+                  'playsinline': 1
+                },
+              });
+            player2 = new YT.Player(`video1`, {
+                height: '315',
+                width: '500',
+                videoId: videoIdArray[1],
+                playerVars: {
+                  'playsinline': 1
+                },
+              });
+            player3 = new YT.Player(`video2`, {
+                height: '315',
+                width: '500',
+                videoId: videoIdArray[2],
+                playerVars: {
+                  'playsinline': 1
+                },
+              });
         }
-
-        // 4. The API will call this function when the video player is ready.
-        function onPlayerReady(event) {
-          event.target.playVideo();
-        }
-
-        // document.querySelector('iframe').innerHTML = `<iframe width="500" height="315" src="https://www.youtube.com/embed/${embedId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
-    }
-})
+    })
+}
 
 function getArticles(query) {
   // Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
@@ -181,8 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const booksSection = document.querySelector('.bodyContainer');
     booksSection.removeAttribute('hidden');
 
-    getArticles(query); // Main function to completely deal with 
-    getbooks(query);
+    // getArticles(query); // Main function to completely deal with 
+    // getbooks(query);
     vidSearch(query);
   });
 
