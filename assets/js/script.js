@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     booksSection.removeAttribute("hidden");
 
     getArticles(query); // Main function to completely deal with
-    // getbooks(query);
+    getbooks(query);
     vidSearch(query);
   });
 
