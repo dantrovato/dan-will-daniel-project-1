@@ -111,10 +111,10 @@ function getArticles(query) {
   }
 
   fetch(
-    `https://gnews.io/api/v4/search?q=${query}&apikey=a3da074793d989f84d2beb007c724681&`
+    `https://gnews.io/api/v4/search?q=&apikey=6a66f081716576b412e2973a4c83402e&`
   )
-  .then((res) => res.json()) // get json response and make it into a js object
-  .then((res) => {
+    .then((res) => res.json()) // get json response and make it into a js object
+    .then((res) => {
     // debugger;
     const resultsArray = res.articles; // store the results into an array of ojbects
     const articlesObjects = getArticlesAtRandom(resultsArray, 3); // get 5 articles at random
@@ -132,17 +132,17 @@ function getbooks(query) {
 
 // Removes any previous search result in case the useclicks search more than once
   function removePreviousSearch() {
-    const cards = document.querySelector("#books-container");
+    const cards = document.querySelector('#books-container');
 
     while (cards.firstChild) {
-    cards.removeChild(cards.firstChild);
+      cards.removeChild(cards.firstChild);
     }
   }
-// Make an API call to OpenLibrary API with the searcterm as parameter
+  // Make an API call to OpenLibrary API with the searcterm as parameter
   // Make an API call to OpenLibrary API with the searcterm as parameter
   fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
-  .then(res => res.json())
-  .then((data) => {
+   .then(res => res.json())
+   .then((data) => {
     console.log(data);
     removePreviousSearch()
     // Get all cards elements in books section and loothrough them to update their content with data froAPI response
@@ -186,24 +186,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   formButton.addEventListener("click", (event) => {
     event.preventDefault(); // stops the form from submitting
-    const query = document.querySelector("input").value; // the value of the input when the user clicks the search button
+    const query = document.querySelector(".form-control").value; // the value of the input when the user clicks the search button
 
     if (!query) {
-      alert("Please enter your interest");
-      return;
-    }
+      document.querySelector(".form-control").placeholder = "Please enter your search term!";
+    }else{
 
     storeQuery(query);
 
     const booksSection = document.querySelector(".bodyContainer");
     booksSection.removeAttribute("hidden");
-
+   
     getArticles(query); // Main function to completely deal with
     getbooks(query);
     vidSearch(query);
+   }
   });
 
-  searchHistoryButton.addEventListener("click", (event) => {
+    searchHistoryButton.addEventListener("click", (event) => {
     searchHistory.innerHTML = ""; // removes previous links to the dropdown menu
 
     // populate the searchHistory div with the queries from local storage
@@ -232,4 +232,3 @@ $(document).on('hide.bs.modal', function(e) {;
       iframe.src = temp;
   })
 })
-
