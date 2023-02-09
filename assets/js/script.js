@@ -1,83 +1,3 @@
-function vidSearch(searchTerm){
-    // number of videos to list, 0 - 50
-    const maxResults = 3;
-    // takes a string, returns only embeddable videos if set to 'true', returns any video if set to 'any'
-    const videoEmbeddable = 'any';
-    // takes a string, returns only videos that can be played outside of youtube if set to 'true', returns any video if set to 'any'
-    const videoSyndicated = 'any';
-    // for holding the youtube video IDs
-    let videoIdArray = [];
-    // the youtube API query
-    let queryURL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResults}&q=${searchTerm}&type=video&videoEmbeddable=${videoEmbeddable}&videoSyndicated=${videoSyndicated}&key=AIzaSyAaHlsRrNz-Id4A5QSxQDmMAAg7Atuz5V0`;
-    fetch(queryURL)
-    .then(response => response.json())
-    .then(function(response){
-        console.log(response);
-        const vidList = response.items;
-        console.log(vidList);
-        let allVideosEl = document.querySelector('#video-container');
-        // this section builds and attaches the elements containing the video title, thumbnail and description to the video section
-        for (let i = 0; i < vidList.length; i++) {
-            console.log(`loop ${i}`);
-
-            // the video id for links and embed
-            const videoId = vidList[i].id.videoId;
-            videoIdArray.push(videoId);
-            console.log(videoIdArray);
-            // the key that contains the video data we want
-            const video = vidList[i].snippet;
-
-            // adds to the video section
-            let videoEl = allVideosEl.children[i];
-            videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed${i}">
-                <h6 class='card-title' id='video-title'>${video.title}</h6>
-                <img src=${video.thumbnails.default.url} class='card-img-top'>
-                <div class=card-body>
-                    <p>${video.description}</p>
-                    <p>by ${video.channelTitle}</p>
-                </div>
-                </button>`;
-        };
-
-        // this section embeds videos in modals
-
-        // loads the iframe API asynchronously
-        let tag = document.createElement('script')
-        tag.src = "https://www.youtube.com/iframe_api";
-        let firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // creates the youtube players
-        window.onYouTubeIframeAPIReady = function() {
-            console.log("YouTube API Ready");
-            player = new YT.Player(`video0`, {
-                height: '315',
-                width: '500',
-                videoId: videoIdArray[0],
-                playerVars: {
-                  'playsinline': 1
-                },
-              });
-            player2 = new YT.Player(`video1`, {
-                height: '315',
-                width: '500',
-                videoId: videoIdArray[1],
-                playerVars: {
-                  'playsinline': 1
-                },
-              });
-            player3 = new YT.Player(`video2`, {
-                height: '315',
-                width: '500',
-                videoId: videoIdArray[2],
-                playerVars: {
-                  'playsinline': 1
-                },
-              })
-        }
-    })
-}
-
 function getArticles(query) {
   // Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
   function getArticlesAtRandom(array, num) {
@@ -147,14 +67,14 @@ function getbooks(query) {
       // Get all cards elements in books section and loothrough them to update their content with data froAPI response
       const cards = document.querySelector("#books-container");
 
-      // create 3 div cards 
+      // create 3 div cards
       for (let i = 0; i < 3; i++) {
         // create a div element
         let card = document.createElement("div");
         card.setAttribute("id", "book-div");
-        // create an anchor element 
+        // create an anchor element
         let bookLink = document.createElement("a");
-        // update link source with book adress from APresponse 
+        // update link source with book adress from APresponse
         bookLink.href = `https://openlibrary.org/isbn/${data.docs[i].isbn[0]}`;
         bookLink.innerHTML =
           "<h4>" +
@@ -164,11 +84,11 @@ function getbooks(query) {
           "</p>";
         // append link element to card element
         card.appendChild(bookLink);
-        // create an image element 
+        // create an image element
         let bookImg = document.createElement("img");
-        // update card image source with imgUrl from APresponse 
+        // update card image source with imgUrl from APresponse
         bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg?default=false`;
-        // append image element to card element 
+        // append image element to card element
         card.appendChild(bookImg);
         // append card element to books-container dielement
         cards.appendChild(card);
@@ -198,15 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-<<<<<<< HEAD
-    // getArticles(query); // Main function to completely deal with 
-    // getbooks(query);
-    vidSearch(query);
-  });
-
-});
-
-=======
     storeQuery(query);
 
     const booksSection = document.querySelector(".bodyContainer");
@@ -214,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getArticles(query); // Main function to completely deal with
     getbooks(query);
-    vidSearch(query);
   });
 
   searchHistoryButton.addEventListener("click", (event) => {
@@ -238,12 +148,3 @@ document.addEventListener("DOMContentLoaded", () => {
     document.location.reload();
   });
 });
->>>>>>> main
-
-$(document).on('hide.bs.modal', function(e) {;
-    let iframeAll = document.querySelectorAll( 'iframe' );
-    iframeAll.forEach(function(iframe){
-        let temp = iframe.src;
-        iframe.src = temp;
-    })
-})
