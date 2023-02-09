@@ -1,3 +1,4 @@
+
 function getArticles(query) {
   // Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
   function getArticlesAtRandom(array, num) {
