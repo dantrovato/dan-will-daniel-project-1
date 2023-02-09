@@ -42,3 +42,18 @@ I also want to have a way to keep track of my searched items and a way to clear 
 - Make the search history items clickable and when they are make a new fetch request for that item
 
 ## Screenshots
+
+Presentation Requirements
+Use this Project Presentation Template Links to an external site.to address the following:
+
+Elevator pitch: A one-minute description of your application.
+
+Concept: What is your user story? What was your motivation for development?
+
+Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+
+Demo: Show your stuff!
+
+Directions for future development.
+
+Links to the deployed application and the GitHub repository.
