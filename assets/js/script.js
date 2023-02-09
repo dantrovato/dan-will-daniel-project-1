@@ -1,3 +1,4 @@
+
 function getArticles(query) {
   // Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
   function getArticlesAtRandom(array, num) {
@@ -51,50 +52,44 @@ function getArticles(query) {
 function getbooks(query) {
   // Removes any previous search result in case the useclicks search more than once
   function removePreviousSearch() {
-    const cards = document.querySelector("#books-container");
+    const cards = document.querySelector('#books-container');
 
     while (cards.firstChild) {
       cards.removeChild(cards.firstChild);
     }
   }
   // Make an API call to OpenLibrary API with the searcterm as parameter
-  fetch(`https://openlibrary.org/search.json?q=${query}`)
-    .then((res) => res.json())
+  fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+    .then(res => res.json())
     .then((data) => {
       console.log(data);
 
-      removePreviousSearch();
+      removePreviousSearch()
       // Get all cards elements in books section and loothrough them to update their content with data froAPI response
-      const cards = document.querySelector("#books-container");
-
-      // create 3 div cards
+      const cards = document.querySelector('#books-container');
+      // create 3 div cards 
       for (let i = 0; i < 3; i++) {
         // create a div element
-        let card = document.createElement("div");
+        let card = document.createElement('div');
         card.setAttribute("id", "book-div");
-        // create an anchor element
+        // create an anchor element 
         let bookLink = document.createElement("a");
-        // update link source with book adress from APresponse
-        bookLink.href = `https://openlibrary.org/isbn/${data.docs[i].isbn[0]}`;
-        bookLink.innerHTML =
-          "<h4>" +
-          data.docs[i].title +
-          "</h4> <p> Author: " +
-          data.docs[i].author_name +
-          "</p>";
+        // update link source with book adress from APresponse 
+        bookLink.href = `http://play.google.com/books/reader?id=${data.items[i].id}&hl=&source=gbs_api`;
+        bookLink.innerHTML = `<h4>${data.items[i].volumeInfo.title}</h4> <p> Author: ${data.items[i].volumeInfo.authors[0]}</p>`;
         // append link element to card element
         card.appendChild(bookLink);
-        // create an image element
+        // create an image element 
         let bookImg = document.createElement("img");
-        // update card image source with imgUrl from APresponse
-        bookImg.src = `https://covers.openlibrary.org/b/isbn/${data.docs[i].isbn[0]}-M.jpg?default=false`;
-        // append image element to card element
+        // update card image source with imgUrl from APresponse 
+        bookImg.src = data.items[i].volumeInfo.imageLinks.smallThumbnail;
+        // append image element to card element 
         card.appendChild(bookImg);
         // append card element to books-container dielement
-        cards.appendChild(card);
+        cards.appendChild(card); 
       }
     });
-}
+};
 
 function storeQuery(query) {
   localStorage.setItem(`${query}`, `${query}`);
