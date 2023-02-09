@@ -1,37 +1,27 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-      crossorigin="anonymous"
-    ></script>
 
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>The Pierian Files</title>
-  </head>
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+      
+      <link rel="stylesheet" href="./assets/css/style.css">
+      <title>The Pierian Files</title>
+    </head>
   <body>
+  
+    <!--body Container-->
+  
+    <div class="navContainer ">
+
     <!-- history links -->
     <div class="dropdown">
       <button
-        class="btn btn-secondary dropdown-toggle"
+        class="btn btn-outline-secondary btn-sm dropdown-toggle "
         type="button"
         data-toggle="dropdown"
         aria-expanded="false"
@@ -40,77 +30,75 @@
         Search history
       </button>
       <div class="dropdown-menu" id="search-history"></div>
-      <button class="btn btn-secondary" id="reset">Reset history</button>
+      <button class="btn btn-outline-danger btn-sm" id="reset">Reset history</button>
     </div>
 
-    <!--body Container-->
-
-    <div class="navContainer bg-light">
+    
       <!-- Hero Section-->
-
-      <div class="jumbotron jumbotron-fluid">
+    
+      <div class="jumbotron jumbotron-fluid ">
         <h1 class="display-4">The Pierian Files</h1>
-        <p class="lead">
-          All the links for your subject of interest in one place
-        </p>
+        <p class="lead">All the links for your subject of interest in one place </p>
       </div>
-
-      <!-- Search Section-->
-
+      
+     <!-- Search Section--> 
+    
       <form class="form-inline my-lg-0">
-        <input
-          class="form-control col-lg-6"
-          type="search"
-          placeholder="Find your interest"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit" id="form-button">
-          Search
-        </button>
-      </form>
-
+        <input class="form-control col-lg-6" type="search" placeholder="Find your interest" aria-label="Search">
+        <button class="btn btn-outline-success btn-lg" type="submit" id="form-button">Search</button>
+       </form>
+      
       <div class="bodyContainer" hidden>
-        <!-- Articles Section-->
 
-        <section class="card Articles my-5">
-          <div class="card-title"><h5>The Articles</h5></div>
-          <div class="card-body" id="articles-container"></div>
-        </section>
-
-        <!--Books Section-->
-
-        <section class="card my-5">
+      <!-- Articles Section-->
+      
+      <section class="card Articles my-5">
+        <div class="card-title"><h5>The Articles</h5></div>
+        <div class="card-body mx-5" id="articles-container">
+        </div>
+      </section>
+      
+      <!--Books Section-->
+      
+        <section class="card Books my-5">
           <div class="card-title"><h5>The Books</h5></div>
-          <div class="card-body" id="books-container"></div>
-        </section>
-
-        <!-- Videos Section-->
-
-        <section class="card video my-5" style="width: 100%">
-          <div class="card-title"><h5>The Videos</h5></div>
-          <div class="card-body row justify-content-around">
-            <div class="card video mx-5" style="width: 15rem">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body"></div>
-            </div>
-
-            <div class="card video mx-5" style="width: 15rem">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body"></div>
-            </div>
-
-            <div class="card video mx-5" style="width: 15rem">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body"></div>
-            </div>
+          <div class="card-body " id="books-container">
           </div>
         </section>
+      
+        <!-- Videos Section-->
+      
+        <section class="card video my-5" style="width: 100%;">
+          <div class="card-title"><h5>The Videos</h5></div>
+          <div class="card-body row justify-content-around">
+        
+            <div class="card video mx-5" style="width: 15rem; ">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+              </div>
+            </div>
+      
+            <div class="card video mx-5" style="width: 15rem; ">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body"> 
+              </div>
+            </div>
+      
+            <div class="card video mx-5" style="width: 15rem;">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+              </div>
+            </div>
+      
+          </div>
+        </section>
+        
       </div>
+      <!--footer  section-->
+      <div class="footer">
+        The Pierian Files © 2023
+     </div>
     </div>
-    <!--footer  section-->
-
-    <div class="footer">The Pierion Files © 2023</div>
-
-    <script src="assets/js/script.js"></script>
+      <script src="assets/js/script.js"></script>
   </body>
 </html>
