@@ -45,23 +45,7 @@
 
     <!--body Container-->
 
-    <div class="navContainer ">
-
-    <!-- history links -->
-    <div class="dropdown">
-      <button
-        class="btn btn-outline-secondary btn-sm dropdown-toggle "
-        type="button"
-        data-toggle="dropdown"
-        aria-expanded="false"
-        id="search-history-button"
-      >
-        Search history
-      </button>
-      <div class="dropdown-menu" id="search-history"></div>
-      <button class="btn btn-outline-danger btn-sm" id="reset">Reset history</button>
-    </div>
-
+    <div class="navContainer bg-light">
       <!-- Hero Section-->
 
       <div class="jumbotron jumbotron-fluid">
@@ -74,11 +58,17 @@
       <!-- Search Section-->
 
       <form class="form-inline my-lg-0">
+        <input
+          class="form-control col-lg-6"
+          type="search"
+          placeholder="Find your interest"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit" id="form-button">
+          Search
+        </button>
+      </form>
 
-        <input class="form-control col-lg-6" type="search" placeholder="Find your interest" aria-label="Search">
-        <button class="btn btn-outline-success btn-lg" type="submit" id="form-button">Search</button>
-       </form>
-      
       <div class="bodyContainer" hidden>
         <!-- Articles Section-->
 
@@ -89,18 +79,7 @@
 
         <!--Books Section-->
 
-      <!-- Articles Section-->
-      
-      <section class="card Articles my-5">
-        <div class="card-title"><h5>The Articles</h5></div>
-        <div class="card-body mx-5" id="articles-container">
-        </div>
-      </section>
-      
-      <!--Books Section-->
-      
-        <section class="card Books my-5">
-
+        <section class="card my-5">
           <div class="card-title"><h5>The Books</h5></div>
           <div class="card-body" id="books-container"></div>
         </section>
@@ -127,13 +106,11 @@
           </div>
         </section>
       </div>
-
-      <!--footer  section-->
-      <div class="footer">
-        The Pierian Files © 2023
-     </div>
     </div>
-      <script src="assets/js/script.js"></script>
+    <!--footer  section-->
 
+    <div class="footer">The Pierion Files © 2023</div>
+
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
