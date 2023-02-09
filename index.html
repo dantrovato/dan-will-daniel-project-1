@@ -17,6 +17,22 @@
     <!--body Container-->
   
     <div class="navContainer ">
+
+    <!-- history links -->
+    <div class="dropdown">
+      <button
+        class="btn btn-outline-secondary btn-sm dropdown-toggle "
+        type="button"
+        data-toggle="dropdown"
+        aria-expanded="false"
+        id="search-history-button"
+      >
+        Search history
+      </button>
+      <div class="dropdown-menu" id="search-history"></div>
+      <button class="btn btn-outline-danger btn-sm" id="reset">Reset history</button>
+    </div>
+
     
       <!-- Hero Section-->
     
@@ -29,7 +45,7 @@
     
       <form class="form-inline my-lg-0">
         <input class="form-control col-lg-6" type="search" placeholder="Find your interest" aria-label="Search">
-        <button class="btn btn-outline-success " type="submit">Search</button>
+        <button class="btn btn-outline-success btn-lg" type="submit" id="form-button">Search</button>
        </form>
       
       <div class="bodyContainer" hidden>
@@ -82,12 +98,7 @@
       <div class="footer">
         The Pierian Files © 2023
      </div>
-
     </div>
-
-
-      
-    
       <script src="assets/js/script.js"></script>
   </body>
 </html>

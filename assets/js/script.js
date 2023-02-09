@@ -91,21 +91,56 @@ function getbooks(query) {
     });
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const button = document.querySelector("button"); // the search button
+function storeQuery(query) {
+  localStorage.setItem(`${query}`, `${query}`);
 
-  button.addEventListener("click", (event) => {
+  console.log(Object.values(localStorage));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const queries = Object.values(localStorage); // returns an array with the queries [cabbage, beer...]
+  const formButton = document.querySelector("#form-button"); // the search button
+  const searchHistoryButton = document.querySelector("#search-history-button");
+  const searchHistory = document.querySelector("#search-history");
+  const reset = document.querySelector("#reset");
+
+  formButton.addEventListener("click", (event) => {
     event.preventDefault(); // stops the form from submitting
     const query = document.querySelector("input").value; // the value of the input when the user clicks the search button
+
     if (!query) {
       alert("Please enter your interest");
       return;
     }
-    const booksSection = document.querySelector('.bodyContainer');
-    booksSection.removeAttribute('hidden');
 
-    getArticles(query); // Main function to completely deal with 
+    storeQuery(query);
+
+    const booksSection = document.querySelector(".bodyContainer");
+    booksSection.removeAttribute("hidden");
+
+    getArticles(query); // Main function to completely deal with
     getbooks(query);
   });
 
+  searchHistoryButton.addEventListener("click", (event) => {
+    searchHistory.innerHTML = ""; // removes previous links to the dropdown menu
+
+    // populate the searchHistory div with the queries from local storage
+    queries.forEach((query) => {
+      const a = document.createElement("a");
+      a.classList.add("dropdown-item");
+      a.setAttribute("href", "#");
+      a.textContent = query;
+      searchHistory.appendChild(a);
+    });
+  });
+
+  reset.addEventListener("click", (event) => {
+    queries.forEach((query) => {
+      localStorage.removeItem(query);
+      // searchHistory.innerHTML = ""; // removes previous links to the dropdown menu
+    });
+    document.location.reload();
+  });
 });
+
