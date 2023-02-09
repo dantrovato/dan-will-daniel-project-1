@@ -143,4 +143,3 @@ document.addEventListener("DOMContentLoaded", () => {
     document.location.reload();
   });
 });
-
