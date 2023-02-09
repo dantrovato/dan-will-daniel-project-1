@@ -73,7 +73,7 @@ function vidSearch(searchTerm){
                 playerVars: {
                   'playsinline': 1
                 },
-              });
+              })
         }
     })
 }
@@ -191,3 +191,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+$(document).on('hide.bs.modal', function(e) {;
+    let iframeAll = document.querySelectorAll( 'iframe' );
+    iframeAll.forEach(function(iframe){
+        let temp = iframe.src;
+        iframe.src = temp;
+    })
+})
