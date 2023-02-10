@@ -19,7 +19,7 @@ https://dantrovato.github.io/dan-will-daniel-project-1/
 
 https://github.com/dantrovato/dan-will-daniel-project-1
 
-## Usefull features
+## Useful features
 
 Follow the links below to learn more about the functionalities of this project:
 
