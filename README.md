@@ -13,11 +13,23 @@ Bootstrap 4.6, Googlefonts, JQuery, Javascript, CSS, HTML
 
 ## The deployed application
 
-## The GitHub repsitories:
+https://dantrovato.github.io/dan-will-daniel-project-1/
 
-Dan's: https://github.com/dantrovato/dan-will-daniel-project-1
-Will's:
-Daniel's:
+## The GitHub repsitory
+
+https://github.com/dantrovato/dan-will-daniel-project-1
+
+## Usefull features
+
+Follow the links below to learn more about the functionalities of this project:
+[![html](https://user-images.githubusercontent.com/117309987/210229486-9f5e01e3-3c35-4238-817a-f65bfac95378.png)][1]
+[![css3](https://user-images.githubusercontent.com/117309987/210229484-4fc2f739-1c58-48f4-ae1c-b9445d6bb90b.png)][2]
+[![bootstrap](https://user-images.githubusercontent.com/117309987/210229483-76a364a5-60ce-4b24-aa64-50e0930bbed0.png)][3]
+[![javascript](https://user-images.githubusercontent.com/117309987/210229488-f2a2488d-dc55-4ab0-b1d8-08326a315393.png)][4]
+[1]: https://www.w3schools.com/html
+[2]: https://www.w3schools.com/css
+[3]: https://getbootstrap.com
+[4]: https://www.w3schools.com/js
 
 ## User story
 
@@ -43,17 +55,11 @@ I also want to have a way to keep track of my searched items and a way to clear 
 
 ## Screenshots
 
-Presentation Requirements
-Use this Project Presentation Template Links to an external site.to address the following:
-
-Elevator pitch: A one-minute description of your application.
-
-Concept: What is your user story? What was your motivation for development?
-
-Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
-
-Demo: Show your stuff!
-
-Directions for future development.
-
-Links to the deployed application and the GitHub repository.
+The landing page
+![The landing page](./assets/images/landing_page.png)
+The articles section
+![The landing page](./assets/images/articles.png)
+The books section
+![The landing page](./assets/images/books.png)
+The videos section
+![The landing page](./assets/images/videos.png)
