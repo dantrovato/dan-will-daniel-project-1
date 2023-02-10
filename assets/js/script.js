@@ -178,7 +178,7 @@ function storeQuery(query) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const queries = Object.values(localStorage); // returns an array with the queries [cabbage, beer...]
+  const queries = Object.keys(localStorage); // returns an array with the queries [cabbage, beer...]
   const formButton = document.querySelector("#form-button"); // the search button
   const searchHistoryButton = document.querySelector("#search-history-button");
   const searchHistory = document.querySelector("#search-history");
