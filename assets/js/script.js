@@ -2,9 +2,9 @@ function vidSearch(searchTerm) {
   // number of videos to list, 0 - 50
   const maxResults = 3;
   // takes a string, returns only embeddable videos if set to 'true', returns any video if set to 'any'
-  const videoEmbeddable = "any";
+  const videoEmbeddable = 'true';
   // takes a string, returns only videos that can be played outside of youtube if set to 'true', returns any video if set to 'any'
-  const videoSyndicated = "any";
+  const videoSyndicated = 'true';
   // for holding the youtube video IDs
   let videoIdArray = [];
   // the youtube API query
@@ -30,10 +30,11 @@ function vidSearch(searchTerm) {
         // adds to the video section
         let videoEl = allVideosEl.children[i];
         videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed${i}">
-              <h6 class='card-title' id='video-title'>${video.title}</h6>
-              <img src=${video.thumbnails.default.url} class='card-img-top'>
+              <h6 class='card-title h5' id='video-title'>${video.title}</h6>
+              <img src=${video.thumbnails.medium.url} class='card-img-top'>
               <div class=card-body>
                   <p>${video.description}</p>
+                  <hr class="hr">
                   <p>by ${video.channelTitle}</p>
               </div>
               </button>`;
@@ -197,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const booksSection = document.querySelector(".bodyContainer");
       booksSection.removeAttribute("hidden");
 
-      getArticles(query);
-      getbooks(query);
+      // getArticles(query);
+      // getbooks(query);
       vidSearch(query);
     }
   });
