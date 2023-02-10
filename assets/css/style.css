@@ -184,11 +184,15 @@ html{
     padding: auto;
  }
 
- #book-div {
-  align-items: center;
-  margin: 10px;
-  padding: 10px;
-}
+   #book-div {
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .video-container .card{
+    margin: 10px 0;
+  }
 
     
 }

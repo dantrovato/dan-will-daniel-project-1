@@ -198,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const booksSection = document.querySelector(".bodyContainer");
       booksSection.removeAttribute("hidden");
 
-      // getArticles(query);
-      // getbooks(query);
+      getArticles(query);
+      getbooks(query);
       vidSearch(query);
     }
   });
