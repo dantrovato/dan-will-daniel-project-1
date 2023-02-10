@@ -12,142 +12,143 @@
       <link rel="stylesheet" href="./assets/css/style.css">
       <title>The Pierian Files</title>
     </head>
-  <body>
+  <body class="navContainer bg-light">
 
-    <!-- history links -->
-    <div class="dropdown">
-      <button
-        class="btn btn-outline-secondary btn-sm dropdown-toggle "
-        type="button"
-        data-toggle="dropdown"
-        aria-expanded="false"
-        id="search-history-button"
-      >
-        Search history
-      </button>
-      <div class="dropdown-menu" id="search-history"></div>
-      <button class="btn btn-outline-danger btn-sm" id="reset">Reset history</button>
-    </div>
-
+   
     <!--body Container-->
 
-    <div class="navContainer bg-light">
-
-      <!-- Hero Section-->
-    
-      <div class="jumbotron jumbotron-fluid ">
-        <h1 class="display-4">The Pierian Files</h1>
-        <p class="lead">All the links for your subject of interest in one place </p>
-      </div>
-      
-     <!-- Search Section--> 
-    
-      <form class="form-inline my-lg-0">
-        <input
-          class="form-control col-lg-6"
-          type="search"
-          placeholder="Find your interest"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit" id="form-button">
-          Search
+       <!-- history links -->
+      <div class="dropdown">
+        <button
+          class="btn btn-outline-secondary btn-sm dropdown-toggle "
+          type="button"
+          data-toggle="dropdown"
+          aria-expanded="false"
+          id="search-history-button"
+        >
+          Search history
         </button>
-      </form>
-    </div>
-      <div class="bodyContainer" hidden>
-
-      <!-- Articles Section-->
-
-      <section class="card Articles my-5">
-        <div class="card-title"><h5>The Articles</h5></div>
-        <div class="card-body" id="articles-container">
-        </div>
-      </section>
-
-      <!--Books Section-->
-
-      <section class="card my-5">
-        <div class="card-title"><h5>The Books</h5></div>
-        <div class="card-body " id="books-container">
-        </div>
-      </section>
+        <div class="dropdown-menu" id="search-history"></div>
+        <button class="btn btn-outline-danger btn-sm" id="reset">Reset history</button>
+      </div>
+  
+        <!-- Hero Section-->
       
-      <!-- Videos Section-->
-      
-      <section class="card my-5" style="width: 100%;">
-        <div class="card-title"><h5>The Videos</h5></div>
-        <div class="card-body row justify-content-around" id="video-container">
+        <div class="jumbotron jumbotron-fluid ">
+          <h1 class="display-4">The Pierian Files</h1>
+          <p class="lead">All the links for your subject of interest in one place </p>
+        </div>
         
-          <div class="card mx-5" style="width: 15rem; ">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-            </div>
-          </div>
+       <!-- Search Section--> 
       
-          <div class="card mx-5" style="width: 15rem; ">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-            
-            </div>
+        <form class="form-inline my-lg-0">
+          <input
+            class="form-control col-lg-6"
+            type="search"
+            placeholder="Find your interest"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit" id="form-button">
+            Search
+          </button>
+        </form>
+  
+        
+    <div class="bodyContainer" hidden>
+  
+        <!-- Articles Section-->
+  
+        <section class="card Articles my-5">
+          <div class="card-title"><h5>The Articles</h5></div>
+            <div class="card-body" id="articles-container">
           </div>
-
-          <div class="card mx-5" style="width: 15rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-            
-            </div>
+        </section>
+  
+        <!--Books Section-->
+  
+        <section class="card my-5">
+          <div class="card-title"><h5>The Books</h5></div>
+          <div class="card-body " id="books-container">
           </div>
+        </section>
+        
+        <!-- Videos Section-->
+        
+        <section class="card my-5" style="width: 100%;">
+          <div class="card-title"><h5>The Videos</h5></div>
+          <div class="card-body row justify-content-around" id="video-container">
+          
+            <div class="card mx-5" style="width: 15rem; ">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+              </div>
+            </div>
+        
+            <div class="card mx-5" style="width: 15rem; ">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+              
+              </div>
+            </div>
+  
+            <div class="card mx-5" style="width: 15rem;">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+              
+              </div>
+            </div>
+        
+          </div>
+        </section>
       
-        </div>
-      </section>
-    </div>
-    
-    <!-- Modal Video 1 -->
-    <div class="modal fade video-modal" id="embed0" tabindex="-1" aria-labelledby="video-title" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content w-auto">
-          <div class="modal-body">
-            <div id="video0"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- Modal Video 1 -->
+        <div class="modal fade video-modal" id="embed0" tabindex="-1" aria-labelledby="video-title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content w-auto">
+              <div class="modal-body">
+                <div id="video0"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    
-    <!-- Modal Video 2 -->
-    <div class="modal fade video-modal" id="embed1" tabindex="-1" aria-labelledby="video-title" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content w-auto">
-          <div class="modal-body">
-            <div id="video1"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        <!-- Modal Video 2 -->
+        <div class="modal fade video-modal" id="embed1" tabindex="-1" aria-labelledby="video-title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content w-auto">
+              <div class="modal-body">
+                <div id="video1"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- Modal Video 3 -->
-    <div class="modal fade video-modal" id="embed2" tabindex="-1" aria-labelledby="video-title" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content w-auto">
-          <div class="modal-body">
-            <div id="video2"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+        <!-- Modal Video 3 -->
+        <div class="modal fade video-modal" id="embed2" tabindex="-1" aria-labelledby="video-title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content w-auto">
+              <div class="modal-body">
+                <div id="video2"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
         </div>
       </div>
+      <!--footer  section-->
+  
+      <div class="footer">
+         The Pierian Files © 2023
+      </div>
     </div>
-    <!--footer  section-->
 
-    <div class="footer">
-       The Pierian Files © 2023
-    </div>
-    
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>

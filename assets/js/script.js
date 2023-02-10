@@ -1,4 +1,4 @@
-function vidSearch(searchTerm){
+function vidSearch(searchTerm) {
   // number of videos to list, 0 - 50
   const maxResults = 3;
   // takes a string, returns only embeddable videos if set to 'true', returns any video if set to 'any'
@@ -10,26 +10,26 @@ function vidSearch(searchTerm){
   // the youtube API query
   let queryURL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResults}&q=${searchTerm}&type=video&videoEmbeddable=${videoEmbeddable}&videoSyndicated=${videoSyndicated}&key=AIzaSyAaHlsRrNz-Id4A5QSxQDmMAAg7Atuz5V0`;
   fetch(queryURL)
-  .then(response => response.json())
-  .then(function(response){
+    .then((response) => response.json())
+    .then(function (response) {
       console.log(response);
       const vidList = response.items;
       console.log(vidList);
-      let allVideosEl = document.querySelector('#video-container');
+      let allVideosEl = document.querySelector("#video-container");
       // this section builds and attaches the elements containing the video title, thumbnail and description to the video section
       for (let i = 0; i < vidList.length; i++) {
-          console.log(`loop ${i}`);
+        console.log(`loop ${i}`);
 
-          // the video id for links and embed
-          const videoId = vidList[i].id.videoId;
-          videoIdArray.push(videoId);
-          console.log(videoIdArray);
-          // the key that contains the video data we want
-          const video = vidList[i].snippet;
+        // the video id for links and embed
+        const videoId = vidList[i].id.videoId;
+        videoIdArray.push(videoId);
+        console.log(videoIdArray);
+        // the key that contains the video data we want
+        const video = vidList[i].snippet;
 
-          // adds to the video section
-          let videoEl = allVideosEl.children[i];
-          videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed${i}">
+        // adds to the video section
+        let videoEl = allVideosEl.children[i];
+        videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed${i}">
               <h6 class='card-title' id='video-title'>${video.title}</h6>
               <img src=${video.thumbnails.default.url} class='card-img-top'>
               <div class=card-body>
@@ -37,49 +37,49 @@ function vidSearch(searchTerm){
                   <p>by ${video.channelTitle}</p>
               </div>
               </button>`;
-      };
+      }
 
       // this section embeds videos in modals
 
       // loads the iframe API asynchronously
-      let tag = document.createElement('script')
+      let tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
-      let firstScriptTag = document.getElementsByTagName('script')[0];
+      let firstScriptTag = document.getElementsByTagName("script")[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       // creates the youtube players
-      window.onYouTubeIframeAPIReady = function() {
-          console.log("YouTube API Ready");
-          player = new YT.Player(`video0`, {
-              height: '315',
-              width: '500',
-              videoId: videoIdArray[0],
-              playerVars: {
-                'playsinline': 1
-              },
-            });
-          player2 = new YT.Player(`video1`, {
-              height: '315',
-              width: '500',
-              videoId: videoIdArray[1],
-              playerVars: {
-                'playsinline': 1
-              },
-            });
-          player3 = new YT.Player(`video2`, {
-              height: '315',
-              width: '500',
-              videoId: videoIdArray[2],
-              playerVars: {
-                'playsinline': 1
-              },
-            })
-      }
-  })
+      window.onYouTubeIframeAPIReady = function () {
+        console.log("YouTube API Ready");
+        player = new YT.Player(`video0`, {
+          height: "315",
+          width: "500",
+          videoId: videoIdArray[0],
+          playerVars: {
+            playsinline: 1,
+          },
+        });
+        player2 = new YT.Player(`video1`, {
+          height: "315",
+          width: "500",
+          videoId: videoIdArray[1],
+          playerVars: {
+            playsinline: 1,
+          },
+        });
+        player3 = new YT.Player(`video2`, {
+          height: "315",
+          width: "500",
+          videoId: videoIdArray[2],
+          playerVars: {
+            playsinline: 1,
+          },
+        });
+      };
+    });
 }
 
 function getArticles(query) {
-// Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
+  // Gets an array of objects. It shuffles it and returns the first few as specified by 'num'
   function getArticlesAtRandom(array, num) {
     const randomisedArr = array.sort(() => (Math.random() > 0.5 ? 1 : -1));
     return randomisedArr.slice(0, num);
@@ -111,70 +111,70 @@ function getArticles(query) {
   }
 
   fetch(
-    `https://gnews.io/api/v4/search?q=${query}&apikey=a3da074793d989f84d2beb007c724681&`
+    `https://gnews.io/api/v4/search?q=${query}&apikey=6a66f081716576b412e2973a4c83402e&`
+    // `https://gnews.io/api/v4/search?q=${query}&apikey=2985aadea72fe28e813b0d6821215a04`
   )
-  .then((res) => res.json()) // get json response and make it into a js object
-  .then((res) => {
-    // debugger;
-    const resultsArray = res.articles; // store the results into an array of ojbects
-    const articlesObjects = getArticlesAtRandom(resultsArray, 3); // get 5 articles at random
-    clearArticles(); // removes any previous articles in case the user clicks search more than once
+    .then((res) => res.json()) // get json response and make it into a js object
+    .then((res) => {
+      // debugger;
+      const resultsArray = res.articles; // store the results into an array of ojbects
+      const articlesObjects = getArticlesAtRandom(resultsArray, 3); // get 5 articles at random
+      clearArticles(); // removes any previous articles in case the user clicks search more than once
 
-    // create div for each article and put them in the article section
-    articlesObjects.forEach((articleObj) => {
-      let { content, description, image, title, url } = articleObj; // object destructuring - takes these properties out of the articleObj and stores them in the specified variables
-      displayArticles(description, title, url);
+      // create div for each article and put them in the article section
+      articlesObjects.forEach((articleObj) => {
+        let { content, description, image, title, url } = articleObj; // object destructuring - takes these properties out of the articleObj and stores them in the specified variables
+        displayArticles(description, title, url);
+      });
     });
-  });
 }
 
 function getbooks(query) {
-
-// Removes any previous search result in case the useclicks search more than once
+  // Removes any previous search result in case the useclicks search more than once
   function removePreviousSearch() {
     const cards = document.querySelector("#books-container");
 
     while (cards.firstChild) {
-    cards.removeChild(cards.firstChild);
+      cards.removeChild(cards.firstChild);
     }
   }
-// Make an API call to OpenLibrary API with the searcterm as parameter
+  // Make an API call to OpenLibrary API with the searcterm as parameter
   // Make an API call to OpenLibrary API with the searcterm as parameter
   fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
-  .then(res => res.json())
-  .then((data) => {
-    console.log(data);
-    removePreviousSearch()
-    // Get all cards elements in books section and loothrough them to update their content with data froAPI response
-    const cards = document.querySelector('#books-container');
-    // create 3 div cards 
-    for (let i = 0; i < 3; i++) {
-      // create a div element
-      let card = document.createElement('div');
-      card.setAttribute("id", "book-div");
-      // create an anchor element 
-      let bookLink = document.createElement("a");
-      // update link source with book adress from APresponse 
-      bookLink.href = `http://play.google.com/books/reader?id=${data.items[i].id}&hl=&source=gbs_api`;
-      bookLink.innerHTML = `<h4>${data.items[i].volumeInfo.title}</h4> <p> Author: ${data.items[i].volumeInfo.authors[0]}</p>`;
-      // append link element to card element
-      card.appendChild(bookLink);
-      // create an image element 
-      let bookImg = document.createElement("img");
-      // update card image source with imgUrl from APresponse 
-      bookImg.src = data.items[i].volumeInfo.imageLinks.smallThumbnail;
-      // append image element to card element 
-      card.appendChild(bookImg);
-      // append card element to books-container dielement
-      cards.appendChild(card); 
-    }
-  });
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      removePreviousSearch();
+      // Get all cards elements in books section and loothrough them to update their content with data froAPI response
+      const cards = document.querySelector("#books-container");
+      // create 3 div cards
+      for (let i = 0; i < 3; i++) {
+        // create a div element
+        let card = document.createElement("div");
+        card.setAttribute("id", "book-div");
+        // create an anchor element
+        let bookLink = document.createElement("a");
+        // update link source with book adress from APresponse
+        bookLink.href = `http://play.google.com/books/reader?id=${data.items[i].id}&hl=&source=gbs_api`;
+        bookLink.innerHTML = `<h4>${data.items[i].volumeInfo.title}</h4> <p> Author: ${data.items[i].volumeInfo.authors[0]}</p>`;
+        // append link element to card element
+        card.appendChild(bookLink);
+        // create an image element
+        let bookImg = document.createElement("img");
+        // update card image source with imgUrl from APresponse
+        bookImg.src = data.items[i].volumeInfo.imageLinks.smallThumbnail;
+        // append image element to card element
+        card.appendChild(bookImg);
+        // append card element to books-container dielement
+        cards.appendChild(card);
+      }
+    });
 }
 
 function storeQuery(query) {
-localStorage.setItem(`${query}`, `${query}`);
+  localStorage.setItem(`${query}`, `${query}`);
 
-console.log(Object.values(localStorage));
+  console.log(Object.values(localStorage));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -186,21 +186,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   formButton.addEventListener("click", (event) => {
     event.preventDefault(); // stops the form from submitting
-    const query = document.querySelector("input").value; // the value of the input when the user clicks the search button
+    const query = document.querySelector(".form-control").value; // the value of the input when the user clicks the search button
 
     if (!query) {
-      alert("Please enter your interest");
-      return;
+      document.querySelector(".form-control").placeholder =
+        "Please enter your search term!";
+    } else {
+      storeQuery(query);
+
+      const booksSection = document.querySelector(".bodyContainer");
+      booksSection.removeAttribute("hidden");
+
+      getArticles(query);
+      getbooks(query);
+      vidSearch(query);
     }
-
-    storeQuery(query);
-
-    const booksSection = document.querySelector(".bodyContainer");
-    booksSection.removeAttribute("hidden");
-
-    getArticles(query); // Main function to completely deal with
-    getbooks(query);
-    vidSearch(query);
   });
 
   searchHistoryButton.addEventListener("click", (event) => {
@@ -225,11 +225,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-$(document).on('hide.bs.modal', function(e) {;
-  let iframeAll = document.querySelectorAll( 'iframe' );
-  iframeAll.forEach(function(iframe){
-      let temp = iframe.src;
-      iframe.src = temp;
-  })
-})
-
+$(document).on("hide.bs.modal", function (e) {
+  let iframeAll = document.querySelectorAll("iframe");
+  iframeAll.forEach(function (iframe) {
+    let temp = iframe.src;
+    iframe.src = temp;
+  });
+});

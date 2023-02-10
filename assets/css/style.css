@@ -4,13 +4,7 @@
   align-items: center;
   -webkit-box-shadow: -1px 2px 26px 0px rgba(0,0,0,0.76); 
   box-shadow: -1px 2px 26px 0px rgba(0,0,0,0.76);
-  background: rgba(255, 255, 255, 0.46);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12.8px);
-  -webkit-backdrop-filter: blur(12.8px);
-  border: 1px solid rgba(255, 255, 255, 0.38);
-
 }
 
 .bodyContainer{
@@ -24,6 +18,10 @@ p{
 h5{
   color: #fff;
   padding: 5px 5px;
+}
+
+.form-control::placeholder{
+  color: rgb(153, 152, 152);
 }
 
 .card-title{
@@ -52,7 +50,7 @@ h5{
   border-radius: 10px;
 }
 
-body{
+html{
   background-color: rgb(199, 197, 197);
 }
 
@@ -153,7 +151,7 @@ body{
 @media  (max-width: 978px){
 
   .navContainer{
-    margin: 50px;
+    margin: 30px;
   }
   
   .jumbotron h1{
@@ -183,13 +181,14 @@ body{
     
   #books-container{
     display: block;
+    padding: auto;
  }
 
  #book-div {
   align-items: center;
-  margin: 20px;
+  margin: 10px;
+  padding: 10px;
 }
 
     
 }
-
