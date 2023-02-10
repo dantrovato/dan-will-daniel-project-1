@@ -30,10 +30,11 @@ function vidSearch(searchTerm) {
         // adds to the video section
         let videoEl = allVideosEl.children[i];
         videoEl.innerHTML = `<button type="button" class="btn" data-toggle="modal" data-id="${i}" data-target="#embed${i}">
-              <h6 class='card-title' id='video-title'>${video.title}</h6>
-              <img src=${video.thumbnails.default.url} class='card-img-top'>
+              <h6 class='card-title h5' id='video-title'>${video.title}</h6>
+              <img src=${video.thumbnails.medium.url} class='card-img-top'>
               <div class=card-body>
                   <p>${video.description}</p>
+                  <hr class="hr">
                   <p>by ${video.channelTitle}</p>
               </div>
               </button>`;
@@ -197,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const booksSection = document.querySelector(".bodyContainer");
       booksSection.removeAttribute("hidden");
 
-      getArticles(query);
-      getbooks(query);
+      // getArticles(query);
+      // getbooks(query);
       vidSearch(query);
     }
   });
