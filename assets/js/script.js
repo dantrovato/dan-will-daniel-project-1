@@ -112,7 +112,7 @@ function getArticles(query) {
 
   fetch(
     `https://gnews.io/api/v4/search?q=${query}&apikey=6a66f081716576b412e2973a4c83402e&`
-    // `https://gnews.io/api/v4/search?q=${query}&apikey=2985aadea72fe28e813b0d6821215a04` // alternative key if the first one breaks
+    // `https://gnews.io/api/v4/search?q=${query}&apikey=2985aadea72fe28e813b0d6821215a04`
   )
     .then((res) => res.json()) // get json response and make it into a js object
     .then((res) => {
